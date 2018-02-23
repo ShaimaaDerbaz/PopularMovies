@@ -1,5 +1,8 @@
 package com.example.shaimaaderbaz.popularmovies.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -7,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by Shaimaa Derbaz on 2/22/2018.
  */
 
-public class PopularResults  {
+public class PopularResults implements Parcelable {
     @SerializedName("id")
     @Expose
     long movie_id;
@@ -29,6 +32,16 @@ public class PopularResults  {
     @SerializedName("overview")
     @Expose
     String overview;
+    public PopularResults(Parcel parcel)
+    {
+        this.movie_id = parcel.readLong();
+        this.title = parcel.readString();
+        this.vote_average = parcel.readDouble();
+        this.poster_path = parcel.readString();
+        this.original_language = parcel.readString();
+        this.release_date=parcel.readString();
+        this.overview = parcel.readString();
+    }
 
     public PopularResults(long movie_id, String title, double vote_average, String poster_path, String original_language,String release_date, String overview) {
         this.movie_id = movie_id;
@@ -95,4 +108,34 @@ public class PopularResults  {
     public void setRelease_date(String release_date) {
         this.release_date = release_date;
     }
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(movie_id);
+        dest.writeString(title);
+        dest.writeDouble(vote_average);
+        dest.writeString(poster_path);
+        dest.writeString(original_language);
+        dest.writeString(release_date);
+        dest.writeString(overview);
+    }
+    @Override
+    public int describeContents()
+    {
+        return 0;
+    }
+
+    public static final Parcelable.Creator<PopularResults> CREATOR = new Parcelable.Creator<PopularResults>()
+    {
+
+        @Override
+        public PopularResults createFromParcel(Parcel parcel)
+        {
+            return new PopularResults(parcel);
+        }
+
+        @Override
+        public PopularResults[] newArray(int size) {
+            return new PopularResults[0];
+        }
+    };
 }

@@ -2,7 +2,6 @@ package com.example.shaimaaderbaz.popularmovies.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +65,7 @@ public class PopularMoviesAdapter extends  RecyclerView.Adapter<PopularMoviesAda
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View postView = inflater.inflate(R.layout.list_item, parent, false);
+        View postView = inflater.inflate(R.layout.popular_list_item, parent, false);
 
         ViewHolder viewHolder = new ViewHolder(postView, this.mItemListener);
         return viewHolder;

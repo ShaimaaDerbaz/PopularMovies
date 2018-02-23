@@ -4,14 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.shaimaaderbaz.popularmovies.R;
 import com.example.shaimaaderbaz.popularmovies.adapters.PopularMoviesAdapter;
-import com.example.shaimaaderbaz.popularmovies.models.BaseResponseResult;
+import com.example.shaimaaderbaz.popularmovies.models.BasePopularResult;
 import com.example.shaimaaderbaz.popularmovies.models.PopularResults;
 import com.example.shaimaaderbaz.popularmovies.utils.SOService;
 import com.example.shaimaaderbaz.popularmovies.utils.Utils;
@@ -27,10 +25,10 @@ public class MainActivity extends AppCompatActivity  {
     PopularMoviesAdapter mAdapter;
     private RecyclerView mRecyclerView;
     private SOService mService;
-    public void loadAnswers() {
-        mService.getMovies().enqueue(new Callback<BaseResponseResult>() {
+    public void loadMovies() {
+        mService.getMovies().enqueue(new Callback<BasePopularResult>() {
             @Override
-            public void onResponse(Call<BaseResponseResult> call, Response<BaseResponseResult> response) {
+            public void onResponse(Call<BasePopularResult> call, Response<BasePopularResult> response) {
 
                 if(response.isSuccessful()) {
                     mAdapter.updateMovies(response.body().getResults());
@@ -43,7 +41,7 @@ public class MainActivity extends AppCompatActivity  {
             }
 
             @Override
-            public void onFailure(Call<BaseResponseResult> call, Throwable t) {
+            public void onFailure(Call<BasePopularResult> call, Throwable t) {
                 Log.d("MainActivity", "error loading from API");
 
             }
@@ -61,9 +59,8 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public void onPostClick(PopularResults item) {
                 Intent i =new Intent(MainActivity.this,DetailsActivity.class);
-                i.putExtra("overview",item.getOverview());
+                i.putExtra("item",item);
                 startActivity(i);
-             //   Toast.makeText(MainActivity.this, "Post id is" + PositoionId, Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -72,7 +69,7 @@ public class MainActivity extends AppCompatActivity  {
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setHasFixedSize(true);
-        loadAnswers();
+        loadMovies();
 
 
 

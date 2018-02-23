@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Shaimaa Derbaz on 2/22/2018.
  */
 
-public class BaseResponseResult {
+public class BasePopularResult {
     @SerializedName("total_results")
     @Expose
     private long total_results;
@@ -17,7 +17,7 @@ public class BaseResponseResult {
     @Expose
     private List<PopularResults> results;
 
-    public BaseResponseResult(List<PopularResults> results, long total_results) {
+    public BasePopularResult(List<PopularResults> results, long total_results) {
         this.results = results;
         this.total_results = total_results;
     }
