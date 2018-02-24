@@ -68,10 +68,10 @@ public class DetailsActivity extends AppCompatActivity {
 
                 if(response.isSuccessful()) {
                     tAdapter.updateTrailers(response.body().getResults());
-                    Log.d("MainActivity", "posts loaded from API");
+                    Log.d("DetailsActivity", "posts loaded from API");
                 }else {
                     int statusCode  = response.code();
-                    Log.d("MainActivity", statusCode+"");
+                    Log.d("DetailsActivity", statusCode+"");
 
                 }
             }
@@ -119,7 +119,7 @@ public class DetailsActivity extends AppCompatActivity {
         tAdapter = new TrailersAdapter(this,new ArrayList<TrailerResults>(),new TrailersAdapter.PostItemListener() {
             @Override
             public void onPostClick(TrailerResults item) {
-                Uri uri =Uri.parse(VIDEO_SOURCE+item.getTrailer_id());
+                Uri uri =Uri.parse(VIDEO_SOURCE+item.getTrailer_key());
                 Intent i =new Intent(Intent.ACTION_VIEW,uri);
                 startActivity(i);
             }});

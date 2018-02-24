@@ -8,19 +8,19 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class TrailerResults {
-    @SerializedName("id")
+    @SerializedName("key")
     @Expose
-    String trailer_id;
+    String trailer_key;
 
-    public TrailerResults(String trailer_id) {
-        this.trailer_id = trailer_id;
+    public TrailerResults(String trailer_key) {
+        this.trailer_key = trailer_key;
     }
 
-    public String getTrailer_id() {
-        return trailer_id;
+    public String getTrailer_key() {
+        return trailer_key;
     }
 
-    public void setTrailer_id(String trailer_id) {
-        this.trailer_id = trailer_id;
+    public void setTrailer_key(String trailer_id) {
+        this.trailer_key = trailer_id;
     }
 }

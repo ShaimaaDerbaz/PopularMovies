@@ -73,7 +73,7 @@ public class TrailersAdapter extends  RecyclerView.Adapter<TrailersAdapter.ViewH
 
         TrailerResults item = mItems.get(position);
         TextView textViewRate = holder.trailer;
-        textViewRate.setText("http://www.youtube.com/watch?v="+item.getTrailer_id());
+        textViewRate.setText(VIDEO_SOURCE+item.getTrailer_key());
 
 
 
